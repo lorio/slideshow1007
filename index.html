@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slideshow_1</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="author" content="The Chopping Block, Inc." />
+	<meta name="geo.country" content="US" />
+	<meta name="dc.language" content="en" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	
+	<link rel="stylesheet" href="styles.css" type="text/css" media="screen" charset="utf-8" />
+	
+	<style type="text/css" media="screen">		
+        #slideshow {
+            width: 310px; 
+            height: 310px;
+            display: block;
+            overflow: hidden
+        }
+		.thumbnail{
+			width: 50px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="wrap" >
+		Project: Slideshow_2
+		
+		<div id="slideshow">
+			<img src="http://placehold.it/300/300/ff0000">			
+			<img src="http://placehold.it/300/300/ff0000">			
+			<img src="http://placehold.it/300/300/ff0000">			
+			<img src="http://placehold.it/300/300/ff0000">												
+		</div>
+		<div id="thumbnails">
+        
+        </div>
+		
+		<button id="previous">Previous</button> |
+		<button id="next">Next</button>
+		
+	</div>
+	<script type="text/javascript" charset="utf-8">
+        
+        images
+               = ["http://placehold.it/300/300/ff0000"
+                ,"http://placehold.it/300/300/ff0000"
+                ,"http://placehold.it/300/300/ff0000"
+                ,"http://placehold.it/300/300/ff0000"]
+        
+        var img = document.querySelector("img");
+        
+        var slideshow = document.querySelector("#slideshow"); 
+        var slides = slideshow.children;
+        
+        var thumbnails = document.querySelector("#thumbnails");
+        var thumbnail = document.createElement("img");
+        
+        var thumbnailDiv = document.getElementById("thumbnails")
+        for(var i =0; i < images.length; i++) {
+          var thumbnail = document.createElement("img");
+          thumbnail.classList.add('thumbnail');
+          thumbnail.setAttribute('src', images[i]);
+          thumbnailDiv.appendChild(thumbnail);    
+        }
+        
+        var showNextSlide = function(){
+            if( index+1 < slides.length){
+				// Get the string in next index from the array
+				index = index+1;
+				
+			}else{
+				// If we are at the last index in the array, let's loop back to the being by setting the index variable
+				index = 0;
+			}
+        
+        thumbnails.src = slides[index];
+            
+        
+			
+            var thumbnailHTML = slides;
+            thumbnail.classList.add(".thumbnail");
+            thumbnailHTML.innerHTML = "http://placehold.it/50/50/ff0000";
+            //thumbnails.appendChild(thumbnail);
+            thumbnail.addEventListener("click", showNextSlide);
+		
+		   // Check whether the current index is the last in the array (RED FLAG: CONDITIONAL)
+			
+			
+		
+		var nextButton = document.querySelector("#next");
+        
+		nextButton.addEventListener("click", showNextSlide);
+        keyboard.addEventListener("rightArrow", showNextSlide);
+        
+        previousButton = document.querySelector("#previous");
+		previousButton.addEventListener("click", showPreviousSlide);
+            
+            };
+        
+        window.addEventListener("keyup", function(event){
+            if(event.keyCode === 39){
+                showNextSlide;
+                
+            } else {
+               if(event.keyCode === 37){
+                showPreviousSlide;
+                 
+                }
+            }
+        });
+	</script>
+</body>
+</html>
